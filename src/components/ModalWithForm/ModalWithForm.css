@@ -10,11 +10,14 @@
   align-items: center;
   font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
-
   font-size: 16px;
-
   line-height: 20px;
   letter-spacing: 0%;
+  visibility: hidden;
+}
+
+.modal__opened {
+    visibility: visible;
 }
 
 .modal__title {
@@ -38,7 +41,7 @@
 }
 
 .modal__close-icon {
-  width: 16px; /* or whatever size fits */
+  width: 16px; 
   height: 16px;
   display: block;
 }
