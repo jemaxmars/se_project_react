@@ -1,14 +1,38 @@
 import "./WeatherCard.css";
-import sunny from "../../assets/sunny.png";
+import { weatherOptions } from "../../utils/constants.js";
 
 function WeatherCard({ weatherData }) {
-  const temperature =
-    weatherData && weatherData.temp ? weatherData.temp.F : "N/A";
+  if (
+    !weatherData ||
+    !weatherData.temp ||
+    weatherData.isDay === undefined ||
+    !weatherData.condition
+  ) {
+    return null;
+  }
+
+  const filteredOptions = weatherOptions.filter((option) => {
+    return (
+      option.day === weatherData.isDay &&
+      option.condition === weatherData.condition
+    );
+  });
+
+  const weatherOptionUrl = filteredOptions[0]?.url;
+
+  console.log("Weather option URL:", weatherOptionUrl);
+  console.log("Filtered options:", filteredOptions);
+  console.log("weatherData.isDay:", weatherData.isDay);
+  console.log("weatherData.condition:", weatherData.condition);
 
   return (
     <section className="weather-card">
-      <p className="weather-card__temp"> {temperature} &deg; F</p>
-      <img src={sunny} alt="sunny" className="weather-card__image" />
+      <p className="weather-card__temp"> {weatherData.temp.F} &deg; F</p>
+      <img
+        src={weatherOptionUrl}
+        alt="Weather condition"
+        className="weather-card__image"
+      />
     </section>
   );
 }

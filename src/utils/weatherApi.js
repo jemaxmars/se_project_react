@@ -10,18 +10,12 @@ export const getWeather = ({ latitude, longitude }, APIkey) => {
   });
 };
 
-export const filterWeatherData = (data) => {
-  const result = {};
-  result.city = data.name;
-  result.temp = { F: data.main.temp };
-  result.type = getWeatherType(result.temp.F);
-  result.condition = data.weather[0].main.toLowerCase();
-  result.isDay = isDay(data.sys, Date.now());
-  return result;
-};
+const isDay = (data) => {
+  const currentTime = data.dt;
+  const sunrise = data.sys.sunrise;
+  const sunset = data.sys.sunset;
 
-const isDay = ({ sunrise, sunset }, now) => {
-    return sunrise * 1000 < now && now < sunset * 1000;
+  return currentTime >= sunrise && currentTime < sunset;
 };
 
 const getWeatherType = (temperature) => {
@@ -32,4 +26,46 @@ const getWeatherType = (temperature) => {
   } else {
     return "cold";
   }
+};
+
+const mapWeatherCondition = (apiCondition) => {
+  const lowerCaseCondition = apiCondition.toLowerCase();
+  switch (lowerCaseCondition) {
+    case "clear":
+      return "clear";
+    case "clouds":
+      return "cloudy";
+    case "rain":
+    case "drizzle":
+      return "rain";
+    case "thunderstorm":
+      return "storm";
+    case "snow":
+      return "snow";
+    case "mist":
+    case "smoke":
+    case "haze":
+    case "dust":
+    case "fog":
+    case "sand":
+    case "ash":
+    case "squall":
+    case "tornado":
+      return "fog";
+    default:
+      console.warn(
+        `Unhandled weather condition: ${apiCondition}. Defaulting to 'clear'.`
+      );
+      return "clear";
+  }
+};
+
+export const filterWeatherData = (data) => {
+  const result = {};
+  result.city = data.name;
+  result.temp = { F: data.main.temp };
+  result.type = getWeatherType(result.temp.F);
+  result.condition = mapWeatherCondition(data.weather[0].main);
+  result.isDay = isDay(data);
+  return result;
 };
