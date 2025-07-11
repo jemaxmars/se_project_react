@@ -2,6 +2,7 @@
   "name": "se_project_react",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://jemaxmars.github.io/se_project_react/",
   "type": "module",
   "scripts": {
     "dev": "vite --open",
@@ -24,7 +25,6 @@
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
     "gh-pages": "^6.3.0",
-    "vite": "^5.3.1",
-    "homepage": "https://jemaxmars.github.io/se_project_react/"
+    "vite": "^5.3.1"
   }
 }
