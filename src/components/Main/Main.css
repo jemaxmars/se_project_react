@@ -16,3 +16,18 @@
 
 }
 
+@media screen and (max-width: 480px) {
+  .cards__text {
+    font-size: 16px;
+  }
+
+  .cards__list {
+    gap: 16px; 
+    
+  }
+
+  .cards__list li {
+    width: 164px;
+    height: 164px;
+  }
+}

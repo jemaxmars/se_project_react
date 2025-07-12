@@ -88,3 +88,20 @@
   padding-bottom: 32px;
   padding-left: 16px;
 }
+
+@media screen and (max-width: 480px) {
+  .item-modal__content_type_image {
+    width: 343px; 
+    height: 463px;
+  }
+
+  .item-modal__image {
+    height: 343px;
+    border-radius: 16px 16px 0 0;
+  }
+
+  .item-modal__footer {
+    height: auto;
+    padding: 16px;
+  }
+}
