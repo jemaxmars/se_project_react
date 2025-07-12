@@ -33,7 +33,7 @@ const mapWeatherCondition = (apiCondition) => {
   switch (lowerCaseCondition) {
     case "clear":
       return "clear";
-    case "clouds":
+    case "cloudy":
       return "cloudy";
     case "rain":
     case "drizzle":
