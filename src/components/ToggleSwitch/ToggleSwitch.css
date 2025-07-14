@@ -57,7 +57,7 @@
 }
 
 .toggle-switch__checkbox:checked ~ .toggle-switch__text_F {
-  color: rgba(0, 0, 0, 1);
+  color: rgba(126, 126, 126, 1);
 }
 
 .toggle-switch__checkbox:not(:checked) ~ .toggle-switch__text_F {
@@ -65,5 +65,9 @@
 }
 
 .toggle-switch__checkbox:not(:checked) ~ .toggle-switch__text_C {
-  color: rgba(0, 0, 0, 1);
+  color:rgba(0, 0, 0, 0.5);
+}
+
+.toggle-switch__text_color_white {
+color :white;
 }
