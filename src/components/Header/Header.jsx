@@ -4,6 +4,7 @@ import avatar from "../../assets/avatar.svg";
 import menuIcon from "../../assets/menu.svg";
 import closeIcon from "../../assets/close.svg";
 import { useState, useEffect } from "react";
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 
 function Header({ handleAddClick, weatherData }) {
   const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
@@ -39,6 +40,7 @@ function Header({ handleAddClick, weatherData }) {
 
       {!isMobile ? (
         <div className="header__desktop-nav">
+          <ToggleSwitch />
           <button
             onClick={handleAddClick}
             type="button"
