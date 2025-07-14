@@ -8,6 +8,10 @@
   position: relative;
 }
 
+.toggle-switch:hover {
+  border: 2px solid rgba(0, 0, 0, 1);
+}
+
 .toggle-switch__checkbox {
   opacity: 0;
   overflow: hidden;
@@ -45,6 +49,21 @@
 }
 
 .toggle-switch__checkbox:checked ~ .toggle-switch__circle {
-  left: 21px;
- 
+  left: 28px;
+}
+
+.toggle-switch__checkbox:checked ~ .toggle-switch__text_C {
+  color: rgba(255, 255, 255, 1);
+}
+
+.toggle-switch__checkbox:checked ~ .toggle-switch__text_F {
+  color: rgba(0, 0, 0, 1);
+}
+
+.toggle-switch__checkbox:not(:checked) ~ .toggle-switch__text_F {
+  color: rgba(255, 255, 255, 1);
+}
+
+.toggle-switch__checkbox:not(:checked) ~ .toggle-switch__text_C {
+  color: rgba(0, 0, 0, 1);
 }
