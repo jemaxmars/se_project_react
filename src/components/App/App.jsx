@@ -13,12 +13,15 @@ import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnit
 function App() {
   const [weatherData, setWeatherData] = useState({
     type: "",
-    temp: { F: 999 },
+    temp: { F: 999, C: 999 },
     city: "",
+    condition: "",
+    isDay: false,
   });
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  const [isWeatherDataLoaded, setIsWeatherDataLoaded] = useState(false);
 
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
@@ -42,9 +45,11 @@ function App() {
       .then((data) => {
         const filteredData = filterWeatherData(data);
         setWeatherData(filteredData);
+        setIsWeatherDataLoaded(true);
       })
       .catch((error) => {
         console.error("Failed to fetch weather data:", error);
+        setIsWeatherDataLoaded(false);
       });
   }, []);
 
@@ -55,7 +60,11 @@ function App() {
       <div className="page">
         <div className="page__content">
           <Header handleAddClick={handleAddClick} weatherData={weatherData} />
-          <Main weatherData={weatherData} handleCardClick={handleCardClick} />
+          {isWeatherDataLoaded ? (
+            <Main weatherData={weatherData} handleCardClick={handleCardClick} />
+          ) : (
+            <div>Loading weather data...</div>
+          )}
         </div>
         <ModalWithForm
           title="New garment"
@@ -70,6 +79,7 @@ function App() {
               className="form-modal__input"
               id="name"
               placeholder="Name"
+              autoComplete="name"
             />
           </label>
           <label htmlFor="imageUrl" className="form-modal__label">
