@@ -21,7 +21,7 @@ function ClothesSection({ onCardClick }) {
             <ItemCard
               key={item._id}
               item={item}
-              onCardClick={onCardClick} // Passed onCardClick as a prop
+              onCardClick={onCardClick} 
             />
           );
         })}
