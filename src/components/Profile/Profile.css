@@ -1,0 +1,16 @@
+/* Profile.css */
+.profile {
+  display: flex;
+  gap: 119px;
+  padding-left: 40px;
+  padding-top: 40px;
+  padding-right: 40px; 
+}
+
+.profile__sidebar {
+flex-direction: row;
+}
+
+.profile__clothes-items {
+  flex-grow: 1;
+}
