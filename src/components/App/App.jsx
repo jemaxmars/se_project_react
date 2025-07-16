@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom"; // Import Routes and Route
+import { Routes, Route } from "react-router-dom";
 
 import "./App.css";
 import { coordinates, APIkey } from "../../utils/constants";
@@ -46,11 +46,9 @@ function App() {
   };
 
   const handleAddItemModalSubmit = ({ name, imageUrl, weather }) => {
-    // update clothingItems array
     setClothingItems((prevItems) => {
       return [{ name, link: imageUrl, weather }, ...prevItems];
     });
-    // close the modal
     closeActiveModal();
   };
 

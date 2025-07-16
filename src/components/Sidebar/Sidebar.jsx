@@ -1,4 +1,4 @@
-import React from "react"; // Import React if you're using JSX
+import React from "react";
 import "./Sidebar.css";
 import "../Profile/Profile.css";
 import avatar from "../../assets/avatar.svg";
@@ -8,7 +8,7 @@ function Sidebar() {
   return (
     <div className="sidebar">
           <img className="sidebar__avatar" src={avatar} alt="Default avatar image" />
-          <p className="sidebar__username">Username</p>
+          <p className="sidebar__username">Terrance Tegegne</p>
     </div>
   );
 }
