@@ -1,3 +1,4 @@
+// Header.jsx
 import "./Header.css";
 import logo from "../../assets/logo.svg";
 import avatar from "../../assets/avatar.svg";
@@ -5,10 +6,10 @@ import menuIcon from "../../assets/menu.svg";
 import closeIcon from "../../assets/close.svg";
 import { useState, useEffect } from "react";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
+import { Link } from "react-router-dom";
 
 // Accept the new prop: isProfilePage
 function Header({ handleAddClick, weatherData, isProfilePage }) {
-  // <--- ADD isProfilePage HERE
   const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 480);
 
@@ -24,22 +25,27 @@ function Header({ handleAddClick, weatherData, isProfilePage }) {
     window.addEventListener("resize", handleResize);
 
     return () => {
+      // <--- This return is part of the useEffect cleanup function
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, []); // <--- This closes the useEffect hook correctly
 
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
 
+  // This is where the error implies the 'return' is happening.
+  // It should be the main return for the Header functional component.
   return (
-    // use the prop to conditionally apply a class
+    // <--- This 'return' should be here, the very last statement of the Header function.
     <header
       className={`header ${isProfilePage ? "header_on-profile-page" : ""}`}
     >
-      {" "}
-      <img className="header__logo" src={logo} alt="WTWR logo" />
+      <Link to="/" className="header__logo">
+        <img src={logo} alt="WTWR logo" />
+      </Link>
+
       <p className="header__date-and-location">
         {currentDate}, {weatherData.city}
       </p>
