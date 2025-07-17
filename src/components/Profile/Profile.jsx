@@ -3,14 +3,14 @@ import "./Profile.css";
 import Sidebar from "../Sidebar/Sidebar";
 import ClothesSection from "../ClothesSection/ClothesSection";
 
-function Profile() {
+function Profile({ onCardClick }) {
   return (
-    <div className="profile">
-      <section className="profile__sidebar">
+    <div className="profile profile-page">
+      <section className="profilesidebar">
         <Sidebar />
       </section>
-      <section className="profile__clothes-items">
-        <ClothesSection />
+      <section className="profileclothes-items">
+        <ClothesSection onCardClick={onCardClick} />
       </section>
     </div>
   );

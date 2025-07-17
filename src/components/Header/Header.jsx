@@ -6,7 +6,9 @@ import closeIcon from "../../assets/close.svg";
 import { useState, useEffect } from "react";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 
-function Header({ handleAddClick, weatherData }) {
+// Accept the new prop: isProfilePage
+function Header({ handleAddClick, weatherData, isProfilePage }) {
+  // <--- ADD isProfilePage HERE
   const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 480);
 
@@ -32,12 +34,15 @@ function Header({ handleAddClick, weatherData }) {
   });
 
   return (
-    <header className="header">
+    // use the prop to conditionally apply a class
+    <header
+      className={`header ${isProfilePage ? "header_on-profile-page" : ""}`}
+    >
+      {" "}
       <img className="header__logo" src={logo} alt="WTWR logo" />
       <p className="header__date-and-location">
         {currentDate}, {weatherData.city}
       </p>
-
       {!isMobile ? (
         <div className="header__desktop-nav">
           <ToggleSwitch />

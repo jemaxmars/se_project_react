@@ -1,6 +1,6 @@
 .profile {
   display: flex;
-  padding-left: 70px;
+  padding-left: 40px;
   padding-top: 40px;
   padding-right: 40px;
   flex-wrap: nowrap;
@@ -8,4 +8,16 @@
 
 .profile__clothes-items {
   flex-grow: 1;
+}
+
+.profile-page .header {
+  padding-left: 0;
+}
+
+.profile-page .header__logo {
+  margin-left: 40px;
+}
+
+.profile-page .header__date-and-location {
+  margin-left: 40px;
 }

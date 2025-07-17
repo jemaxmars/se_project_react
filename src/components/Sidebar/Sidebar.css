@@ -11,14 +11,14 @@
   object-fit: cover;
   position: absolute;
   left: 40px;
-  top: 129px;
+  top: 143px;
 }
 
 .sidebar__username {
-  font-size: 18px;
-  font-weight: 700;
-  margin: 0;
-  position: absolute;
-  left: 106px;
-  top: 143px;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0;
+    position: absolute;
+    left: 112px;
+    top: 154px;
 }

@@ -53,6 +53,15 @@
   display: none;
 }
 
+.header_on-profile-page {
+  padding-left: 0;
+}
+
+.header_on-profile-page .header__logo {
+  margin-left: -235px;
+  margin-top: -10px;
+}
+
 @media screen and (max-width: 480px) {
   .header {
     justify-content: space-between;
