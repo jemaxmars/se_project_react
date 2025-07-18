@@ -10,8 +10,9 @@ import Profile from "../Profile/Profile";
 import Footer from "../Footer/Footer";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
-import AddItemModal from "../AddItemModal/AddItemModal"; // CORRECTED IMPORT PATH HERE
-import { defaultClothingItems } from "../../utils/constants";
+import AddItemModal from "../AddItemModal/AddItemModal";
+import { getItems, addItem, deleteItem } from "../../utils/api";
+import ConfirmDeleteModal from "../ConfirmDeleteModal/ConfirmDeleteModal";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -22,11 +23,13 @@ function App() {
     isDay: false,
   });
 
-  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+  const [clothingItems, setClothingItems] = useState([]);
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
-  const [isWeatherDataLoaded, setIsWeatherDataLoaded] = useState(false);
+  const [isWeatherDataLoaded, setIsWeatherDataLoaded] = useState(false); 
+  const [isConfirmModalOpened, setIsConfirmModalOpened] = useState(false);
+  const [itemToDelete, setItemToDelete] = useState(null);
 
   const location = useLocation();
   const isProfilePage = location.pathname === "/profile";
@@ -49,10 +52,40 @@ function App() {
   };
 
   const handleAddItemModalSubmit = ({ name, imageUrl, weather }) => {
-    setClothingItems((prevItems) => {
-      return [{ name, link: imageUrl, weather }, ...prevItems];
-    });
-    closeActiveModal();
+    addItem({ name, imageUrl, weather })
+      .then((newItem) => {
+        setClothingItems((prevItems) => [newItem, ...prevItems]);
+        closeActiveModal();
+      })
+      .catch((error) => {
+        console.error("Error adding item:", error);
+      });
+  };
+
+  const handleDeleteItem = (id) => {
+    setItemToDelete(id);
+    setIsConfirmModalOpened(true);
+  };
+
+  const handleConfirmDelete = () => {
+    deleteItem(itemToDelete)
+      .then(() => {
+        setClothingItems((prevItems) =>
+          prevItems.filter((item) => item._id !== itemToDelete)
+        );
+        setIsConfirmModalOpened(false);
+        closeActiveModal();
+        setItemToDelete(null);
+      })
+      .catch((error) => {
+        console.error("Error confirming delete:", error);
+        setIsConfirmModalOpened(false);
+      });
+  };
+
+  const handleCloseConfirmModal = () => {
+    setIsConfirmModalOpened(false);
+    setItemToDelete(null);
   };
 
   useEffect(() => {
@@ -65,6 +98,16 @@ function App() {
       .catch((error) => {
         console.error("Failed to fetch weather data:", error);
         setIsWeatherDataLoaded(false);
+      });
+  }, []);
+
+  useEffect(() => {
+    getItems()
+      .then((data) => {
+        setClothingItems(data);
+      })
+      .catch((error) => {
+        console.error("Failed to fetch clothing items:", error);
       });
   }, []);
 
@@ -83,20 +126,21 @@ function App() {
             <Route
               path="/"
               element={
-                isWeatherDataLoaded ? (
-                  <Main
-                    weatherData={weatherData}
-                    handleCardClick={handleCardClick}
-                    clothingItems={clothingItems}
-                  />
-                ) : (
-                  <div>Loading weather data...</div>
-                )
+                <Main
+                  weatherData={weatherData}
+                  handleCardClick={handleCardClick}
+                  clothingItems={clothingItems}
+                />
               }
             />
             <Route
               path="/profile"
-              element={<Profile onCardClick={handleCardClick} />}
+              element={
+                <Profile
+                  onCardClick={handleCardClick}
+                  clothingItems={clothingItems}
+                />
+              }
             />
           </Routes>
         </div>
@@ -109,6 +153,12 @@ function App() {
           isOpen={activeModal === "preview"}
           card={selectedCard}
           onClose={closeActiveModal}
+          onDeleteItem={handleDeleteItem}
+        />
+        <ConfirmDeleteModal
+          isOpen={isConfirmModalOpened}
+          onClose={handleCloseConfirmModal}
+          onConfirm={handleConfirmDelete}
         />
         <Footer />
       </div>

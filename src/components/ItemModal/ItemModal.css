@@ -6,7 +6,7 @@
   height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
   z-index: 1000;
   visibility: hidden;
   opacity: 0;
@@ -75,7 +75,6 @@
   font-size: 20px;
   line-height: 24px;
   letter-spacing: 0%;
-  
 }
 
 .item-modal__weather {
@@ -89,9 +88,23 @@
   padding-left: 16px;
 }
 
+.item-modal__delete-button {
+  color: rgba(255, 77, 0, 1);
+  background-color: rgba(255, 255, 255, 1);
+  border: none;
+  position: absolute;
+  bottom: 69px;
+  right: 23px;
+  cursor: pointer;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+}
+
 @media screen and (max-width: 480px) {
   .item-modal__content_type_image {
-    width: 343px; 
+    width: 343px;
     height: 463px;
   }
 

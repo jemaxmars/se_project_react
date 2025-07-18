@@ -1,11 +1,8 @@
 import { useState } from "react";
 import "./ClothesSection.css";
 import ItemCard from "../ItemCard/ItemCard";
-import { defaultClothingItems } from "../../utils/constants";
 
-function ClothesSection({ onCardClick }) {
-  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
-
+function ClothesSection({ onCardClick, clothingItems }) {
   return (
     <div className="clothes__section">
       <div className="clothes__header">
@@ -15,7 +12,6 @@ function ClothesSection({ onCardClick }) {
         </button>
       </div>
 
-      
       <ul className="clothes__section-items">
         {clothingItems.map((item) => (
           <ItemCard key={item._id} item={item} onCardClick={onCardClick} />

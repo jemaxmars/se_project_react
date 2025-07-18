@@ -123,8 +123,20 @@
   padding-bottom: 8px;
   padding-left: 16px;
   gap: 8px;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 1); 
   cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-modal__submit:hover {
+  /* HOVER STATE: */
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.form-modal__submit:disabled {
+  /* DISABLED STATE: */
+  background-color: rgba(0, 0, 0, 0.3);
+  cursor: not-allowed; 
 }
 
 @media screen and (max-width: 480px) {
