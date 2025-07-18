@@ -1,27 +1,24 @@
 .header {
   display: flex;
   align-items: center;
-  padding: 32px 0 28px; /* This is your current padding */
-  position: relative; /* Keep this if other elements rely on it (like absolutely positioned children) */
-  justify-content: flex-start; /* Keep this if you want items initially to the left */
-  gap: 24px; /* Keep this gap between logo/date and the next element */
+  padding: 32px 0 28px;
+  position: relative;
+  justify-content: flex-start;
+  gap: 24px;
 }
 
-/* 1. Style the Link component itself to behave like the original image */
-.header__logo { /* This class is now on the <Link> component */
-  display: block; /* Make the Link element a block so it respects width/height and acts as a flex item */
-  height: 40px; /* Adjust this height to match your logo's visual height */
-  width: auto; /* Allow width to be determined by content or aspect ratio */
-  text-decoration: none; /* Remove default underline from links */
-  flex-shrink: 0; /* Prevent it from shrinking in flex container if space is tight */
-  /* Remove any margins here, unless they are the specific adjustments you want to apply */
+.header__logo {
+  display: block;
+  height: 40px;
+  width: auto;
+  text-decoration: none;
+  flex-shrink: 0;
 }
 
-/* 2. Style the image *inside* the Link to fill its container */
-.header__logo img { /* Target the image directly within the Link that has header__logo class */
-  height: 100%; /* Make the image fill the height of its parent (the Link) */
-  width: auto; /* Maintain aspect ratio */
-  display: block; /* Remove any extra spacing below inline images */
+.header__logo img {
+  height: 100%;
+  width: auto;
+  display: block;
 }
 
 .header__date-and-location {
@@ -37,7 +34,7 @@
   display: flex;
   align-items: center;
   gap: 20px;
-  margin-left: auto; /* Pushes this div to the far right */
+  margin-left: auto;
 }
 
 .header__add-clothes-btn {
@@ -48,7 +45,7 @@
   border: none;
   cursor: pointer;
   background: none;
-  color: black;
+  color: rgba(0, 0, 0, 1);
 }
 
 .header__user-container {
@@ -66,22 +63,23 @@
   letter-spacing: 0%;
 }
 
+.header__link {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 1);
+}
+
 .header__menu-btn {
   display: none;
 }
 
-/* This is the crucial part for your profile page specific adjustment */
 .header_on-profile-page {
-  padding-left: 0; /* Removes any default left padding on the header itself */
+  padding-left: 0;
 }
 
-/* Target the Link element directly for the profile page adjustment */
-.header_on-profile-page .header__logo { /* This now targets the <Link> component */
-  margin-left: -235px; /* Keep your exact negative margin */
-  margin-top: -10px;  /* Keep your exact negative margin */
-  /* Ensure no conflicting `position` or `left`/`top` if they were ever there directly on .header__logo */
+.header_on-profile-page .header__logo {
+  margin-left: -235px;
+  margin-top: -10px;
 }
-
 
 @media screen and (max-width: 480px) {
   .header {
@@ -120,7 +118,6 @@
     background-color: rgba(0, 0, 0, 0.5);
     transition: right 0.3s ease-in-out;
     z-index: 999;
-
     visibility: hidden;
     opacity: 0;
     pointer-events: none;

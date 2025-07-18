@@ -25,20 +25,16 @@ function Header({ handleAddClick, weatherData, isProfilePage }) {
     window.addEventListener("resize", handleResize);
 
     return () => {
-      // <--- This return is part of the useEffect cleanup function
       window.removeEventListener("resize", handleResize);
     };
-  }, []); // <--- This closes the useEffect hook correctly
+  }, []);
 
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
 
-  // This is where the error implies the 'return' is happening.
-  // It should be the main return for the Header functional component.
   return (
-    // <--- This 'return' should be here, the very last statement of the Header function.
     <header
       className={`header ${isProfilePage ? "header_on-profile-page" : ""}`}
     >
@@ -59,17 +55,18 @@ function Header({ handleAddClick, weatherData, isProfilePage }) {
           >
             + Add clothes
           </button>
-          <div className="header__user-container">
-            <p className="header__username">Terrance Tegegne</p>
-            <img src={avatar} alt="Avatar image" className="header__avatar" />
-          </div>
+          <Link to="/profile" className="header__link">
+            <div className="header__user-container">
+              <p className="header__username">Terrance Tegegne</p>
+              <img src={avatar} alt="Avatar image" className="header__avatar" />
+            </div>
+          </Link>
         </div>
       ) : (
         <>
           <button onClick={toggleMobileMenu} className="header__menu-btn">
             <img src={menuIcon} alt="Open menu" />
           </button>
-
           <div
             className={`header__mobile-menu ${
               isMobileMenuOpened ? "header__mobile-menu_opened" : ""
@@ -79,6 +76,7 @@ function Header({ handleAddClick, weatherData, isProfilePage }) {
               <button onClick={toggleMobileMenu} className="header__close-btn">
                 <img src={closeIcon} alt="Close menu" />
               </button>
+
               <div className="header__user-container header__user-container_mobile">
                 <p className="header__username">Terrance Tegegne</p>
                 <img
