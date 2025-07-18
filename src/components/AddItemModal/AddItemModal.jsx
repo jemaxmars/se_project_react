@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"; 
+import { useState, useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "./AddItemModal.css";
 
@@ -10,7 +10,7 @@ export default function AddItemModal({
   const [name, setName] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [weather, setWeather] = useState("");
-  const [isButtonDisabled, setIsButtonDisabled] = useState(true); 
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -26,6 +26,17 @@ export default function AddItemModal({
 
   const handleSumbit = (e) => {
     e.preventDefault();
+
+    try {
+      new URL(imageUrl);
+    } catch (error) {
+      console.error("Invalid Image URL:", imageUrl);
+      alert(
+        "Please enter a valid image URL (e.g., starts with http:// or https://)"
+      );
+      return;
+    }
+
     onAddItemModalSubmit({ name, imageUrl, weather });
     setName("");
     setImageUrl("");
@@ -33,13 +44,12 @@ export default function AddItemModal({
   };
 
   useEffect(() => {
-    
-    if (name && imageUrl && weather) {
-      setIsButtonDisabled(false); 
+    if (name.trim() !== "" && imageUrl.trim() !== "" && weather !== "") {
+      setIsButtonDisabled(false);
     } else {
-      setIsButtonDisabled(true); 
+      setIsButtonDisabled(true);
     }
-  }, [name, imageUrl, weather]); 
+  }, [name, imageUrl, weather]);
 
   return (
     <ModalWithForm
@@ -62,7 +72,7 @@ export default function AddItemModal({
           autoComplete="name"
           onChange={handleNameChange}
           value={name}
-          required 
+          required
         />
       </label>
       <label htmlFor="imageUrl" className="form-modal__label">
@@ -75,7 +85,7 @@ export default function AddItemModal({
           autoComplete="image"
           onChange={handleImageUrlChange}
           value={imageUrl}
-          required 
+          required
         />
       </label>
       <fieldset className="form-modal__radio-btns">
@@ -92,7 +102,7 @@ export default function AddItemModal({
             value="hot"
             onChange={handleWeatherChange}
             checked={weather === "hot"}
-            required 
+            required
           />
           Hot
         </label>
@@ -108,7 +118,7 @@ export default function AddItemModal({
             value="warm"
             onChange={handleWeatherChange}
             checked={weather === "warm"}
-            required 
+            required
           />
           Warm
         </label>
@@ -124,7 +134,7 @@ export default function AddItemModal({
             value="cold"
             onChange={handleWeatherChange}
             checked={weather === "cold"}
-            required 
+            required
           />
           Cold
         </label>
