@@ -77,8 +77,7 @@
 }
 
 .header_on-profile-page .header__logo {
-  margin-left: -235px;
-  margin-top: -10px;
+  margin-top: -20px;
 }
 
 @media screen and (max-width: 480px) {

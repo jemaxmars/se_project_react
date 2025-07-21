@@ -1,4 +1,3 @@
-// Header.jsx
 import "./Header.css";
 import logo from "../../assets/logo.svg";
 import avatar from "../../assets/avatar.svg";
@@ -8,7 +7,6 @@ import { useState, useEffect } from "react";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom";
 
-// Accept the new prop: isProfilePage
 function Header({ handleAddClick, weatherData, isProfilePage }) {
   const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 480);

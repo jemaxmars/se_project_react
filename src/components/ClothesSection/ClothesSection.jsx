@@ -2,12 +2,16 @@ import { useState } from "react";
 import "./ClothesSection.css";
 import ItemCard from "../ItemCard/ItemCard";
 
-function ClothesSection({ onCardClick, clothingItems }) {
+function ClothesSection({ onCardClick, clothingItems, onAddClick }) {
   return (
     <div className="clothes__section">
       <div className="clothes__header">
         <p className="clothes__header-title">Your Items</p>
-        <button type="button" className="clothes__section-add-btn">
+        <button
+          type="button"
+          className="clothes__section-add-btn"
+          onClick={onAddClick}
+        >
           + Add New
         </button>
       </div>

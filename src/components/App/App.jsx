@@ -27,7 +27,7 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
-  const [isWeatherDataLoaded, setIsWeatherDataLoaded] = useState(false); 
+  const [isWeatherDataLoaded, setIsWeatherDataLoaded] = useState(false);
   const [isConfirmModalOpened, setIsConfirmModalOpened] = useState(false);
   const [itemToDelete, setItemToDelete] = useState(null);
 
@@ -139,6 +139,7 @@ function App() {
                 <Profile
                   onCardClick={handleCardClick}
                   clothingItems={clothingItems}
+                  onAddClick={handleAddClick}
                 />
               }
             />

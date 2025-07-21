@@ -129,12 +129,10 @@
 }
 
 .form-modal__submit:hover {
-  /* HOVER STATE: */
   background-color: rgba(0, 0, 0, 0.6);
 }
 
 .form-modal__submit:disabled {
-  /* DISABLED STATE: */
   background-color: rgba(0, 0, 0, 0.3);
   cursor: not-allowed; 
 }

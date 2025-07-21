@@ -11,7 +11,7 @@ function ItemModal({ isOpen, onClose, card, onDeleteItem }) {
   };
 
   return (
-    <div className={`item-modal ${isOpen ? "item-modal_opened" : ""}`}>
+    <div className={`item-modal modal ${isOpen ? "item-modal_opened" : ""}`}>
       <div className="item-modal__content_type_image">
         <button
           onClick={handleCloseClick}
