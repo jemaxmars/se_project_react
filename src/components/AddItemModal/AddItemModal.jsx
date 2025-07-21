@@ -38,10 +38,15 @@ export default function AddItemModal({
     }
 
     onAddItemModalSubmit({ name, imageUrl, weather });
-    setName("");
-    setImageUrl("");
-    setWeather("");
   };
+
+  useEffect(() => {
+    if (isOpen) {
+      setName("");
+      setImageUrl("");
+      setWeather("");
+    }
+  }, [isOpen]);
 
   useEffect(() => {
     if (name.trim() !== "" && imageUrl.trim() !== "" && weather !== "") {

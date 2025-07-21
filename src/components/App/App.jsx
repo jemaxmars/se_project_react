@@ -73,13 +73,11 @@ function App() {
         setClothingItems((prevItems) =>
           prevItems.filter((item) => item._id !== itemToDelete)
         );
-        setIsConfirmModalOpened(false);
+        handleCloseConfirmModal();
         closeActiveModal();
-        setItemToDelete(null);
       })
       .catch((error) => {
         console.error("Error confirming delete:", error);
-        setIsConfirmModalOpened(false);
       });
   };
 
@@ -140,6 +138,7 @@ function App() {
                   onCardClick={handleCardClick}
                   clothingItems={clothingItems}
                   onAddClick={handleAddClick}
+                  handleDeleteItem={handleDeleteItem}
                 />
               }
             />
