@@ -1,0 +1,150 @@
+.register-modal__container {
+  position: relative;
+}
+
+.register-modal__form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 16px;
+  padding: 72px 28px 36px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+  max-width: 496px;
+  margin: -150px auto 0;
+  bottom: 587px;
+ 
+}
+
+.register-modal__label {
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0%;
+  color: #000000;
+}
+
+.register-modal__label_error {
+  color: rgba(255, 77, 0, 1);
+}
+
+.register-modal__input {
+  display: block;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 1);
+  width: 440px;
+  height: 29px;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  color: #000000;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.register-modal__input::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.register-modal__input_error {
+  border-bottom: 1px solid rgba(255, 77, 0, 1);
+  color: rgba(255, 77, 0, 1);
+}
+
+.register-modal__button {
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: #fff;
+  width: 86px;
+  height: 36px;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px 8px 15px;
+  background-color: rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.register-modal__button:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.register-modal__button:disabled {
+  background-color: rgba(0, 0, 0, 0.3);
+  cursor: not-allowed;
+}
+
+.register-modal__login-button {
+  width: 80px;
+  height: 40px;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  border: none;
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.register-modal__close-button {
+  position: absolute;
+  top: 20px;
+  right: 28px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.register-modal__close-icon {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+.register-modal__title {
+  position: absolute;
+  top: 28px;
+  left: 28px;
+  color: #000;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  margin: 0;
+  margin-bottom: 24px;
+  z-index: 1;
+}
+
+.register-modal__error {
+  color: rgba(255, 77, 0, 1);
+}
+
+@media screen and (max-width: 480px) {
+  .register-modal__form {
+    width: 343px;
+    padding: 24px;
+    margin: 0 16px;
+    max-height: 455px;
+  }
+
+  .register-modal__input {
+    width: 100%;
+    height: 44px;
+  }
+
+  .register-modal__button {
+    width: 100%;
+    height: 44px;
+    margin-top: 20px;
+  }
+}

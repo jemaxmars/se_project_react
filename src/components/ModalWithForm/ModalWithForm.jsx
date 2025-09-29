@@ -3,12 +3,12 @@ import modalClose from "../../assets/modalClose.svg";
 
 function ModalWithForm({
   children,
-  buttonText,
+  buttonText, // <-- changed from buttonText
   title,
   isOpen,
   onClose,
   onSubmit,
-  isButtonDisabled,
+  isbuttonDisabled,
 }) {
   return (
     <div className={`form-modal ${isOpen ? "form-modal_opened" : ""}`}>
@@ -24,9 +24,9 @@ function ModalWithForm({
         <form onSubmit={onSubmit} className="form-modal__form">
           {children}
           <button
+            className="form-modal__button"
             type="submit"
-            className="form-modal__submit"
-            disabled={isButtonDisabled}
+            disabled={isbuttonDisabled}
           >
             {buttonText}
           </button>

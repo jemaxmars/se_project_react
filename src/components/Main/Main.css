@@ -6,14 +6,23 @@
 }
 
 .cards__list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 21px;
-    padding: 0;
-    list-style-type: none;
-    margin: 0;
-    justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 21px;
+  padding: 0;
+  list-style-type: none;
+  margin: 0;
+  max-width: 1363px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
+.main-page-container {
+  width: 100%;
+  min-width: 1363px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 @media screen and (max-width: 480px) {
@@ -22,8 +31,7 @@
   }
 
   .cards__list {
-    gap: 16px; 
-    
+    gap: 16px;
   }
 
   .cards__list li {

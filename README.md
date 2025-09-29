@@ -4,63 +4,99 @@
 
 WTWR (What To Wear) is a React-based frontend application that recommends weather-appropriate clothing based on real-time data from a Weather API. This project is the frontend portion of a full-stack application.
 
-In this sprint, I focused on building **core UI functionality and integrating with a mock API**, setting the stage for future backend development and advanced features. 
-
-In the previous sprint, I focused on building the **frontend UI and core functionality**, including temperature-based clothing suggestions, responsive layout, and API integration.
-
 ---
 
-## 🚀 Key Features Implemented (This Sprint)
+## 🚀 Changes Implemented This Sprint
 
-The following key features have been implemented and refined:
+- **User Authentication:**
 
--   ✅ **Temperature Unit Toggle Switch:** Users can now switch between **Fahrenheit (°F)** and **Celsius (°C)** measurements for temperature display using a custom-styled toggle switch. This uses **React Context** for global state management.
--   🗺️ **Profile Page Route:** A dedicated `/profile` page has been implemented using **React Router**, displaying all clothing items and user information.
--   🔗 **Mock API Integration:**
-    * A **mock server (json-server)** is set up to mimic a backend API for clothing items.
-    * **GET /items:** All clothing items are now fetched from the mock server and displayed in the application state. Default hardcoded items have been removed.
-    * **POST /items:** Users can **add new clothing items** through a dedicated form. Data is submitted to the mock server and immediately reflected in the UI.
-    * **DELETE /items/:id:** Users can **delete clothing items**, with changes persisted on the mock server and immediately updated in the UI. A **custom confirmation modal** enhances user experience for deletion.
--   📝 **Form Submission & Validation:** The "Add New Garment" form uses **controlled components** for managing input data and includes robust **client-side validation** to ensure required fields are filled and image URLs are valid before submission.
+  - RegisterModal and LoginModal allow users to register and log in.
+  - JWT token is stored in localStorage after login/registration.
+  - On initial page load, localStorage is checked for a token; if present and valid, the user is logged in automatically.
+  - Logout removes the token from localStorage and updates UI state.
+
+- **Protected Routes:**
+
+  - `/profile` route is protected and only accessible to authenticated users.
+  - Only the current user's clothing cards are shown on the profile page.
+
+- **User Info Display:**
+
+  - When logged in, user information is displayed in the header and sidebar.
+  - Sidebar includes buttons for logging out and opening the “change profile” modal.
+  - Users can update their profile information via the “change profile” form.
+
+- **Clothing Item Features:**
+
+  - Users can add, edit, and delete clothing items.
+  - Only cards matching the current weather condition are displayed on the main page.
+  - Like/unlike functionality for clothing cards is implemented; likes persist between page loads and are reflected in the UI.
+
+- **API Integration:**
+
+  - All API requests (signup, signin, get user, update user, get items, add item, delete item, like/unlike item) interact with the Express backend.
+  - All requests requiring authentication include the JWT token.
+  - Server responses are checked for correctness; all promise chains end in a catch block.
+
+- **Weather and UI:**
+
+  - Weather data is fetched from the weather API on page load.
+  - Temperature unit toggle switch (F/C) is implemented using React Context.
+  - WeatherCard displays correct temperature, unit, and weather image.
+  - Header displays current date and location (based on hard-coded coordinates).
+
+- **Routing and Navigation:**
+
+  - Two main routes: `/` (Main) and `/profile` (Profile).
+  - Navigation links and logo click lead to correct routes.
+  - Responsive design for desktop and mobile.
+
+- **Modals:**
+
+  - ModalWithForm, ItemModal, AddItemModal, RegisterModal, LoginModal, and EditProfileModal are implemented and styled per Figma.
+  - Modals open/close via appropriate handlers.
+
+- **Project Structure and Best Practices:**
+  - All required files, folders, and components are present.
+  - Code is formatted with Prettier.
+  - No build or runtime errors.
+  - All API and authentication logic is separated in the utils directory.
+  - Functional components and hooks are used throughout.
 
 ---
 
 ## 💡 Project Features (Overall)
 
-Beyond the core objectives of this sprint, the application includes:
-
--   👕 **Clothing Item Cards:** Dynamically rendered from API data.
--   ☁️ **OpenWeatherMap API Calls:** Fetches current temperature (Fahrenheit & Celsius), location name, daytime/nighttime status, and weather condition.
--   📍 **Location & Temperature Display:** Current location and temperature are shown in the header and weather card.
--   🔍 **Temperature-Based Filtering:** Clothing items are filtered based on the current weather type on the main page.
--   ➕ **New Garment Modal:** Opens and closes for adding items.
--   🖼️ **Image Modal:** Appears when a clothing card is clicked.
--   👍 **Static Like Icon:** Present on each clothing card (functionality pending).
--   📱 **Responsive Design:** Adapts to all screen sizes.
+- 👕 Clothing Item Cards: Dynamically rendered from API data.
+- ☁️ Weather API Calls: Fetches current temperature, location, and weather condition.
+- 📍 Location & Temperature Display: Shown in header and weather card.
+- 🔍 Temperature-Based Filtering: Clothing items filtered by weather.
+- ➕ New Garment Modal: Add new items.
+- 🖼️ Image Modal: View item details.
+- 👍 Like/Unlike: Toggle likes on clothing cards.
+- 📱 Responsive Design: Adapts to all screen sizes.
 
 ---
 
 ## 🎨 Design & UI
 
-The application faithfully follows the **Figma design specs** for the WTWR project.
-
--   A comprehensive **UI Kit** for typography, spacing, and button styles.
--   Hover states for buttons and cards.
--   Responsive, mobile-first layout.
--   Clean and consistent design system.
--   Custom-designed toggle switch and confirmation modal enhance user interaction.
+- Follows Figma design specs.
+- UI Kit for typography, spacing, and button styles.
+- Hover states for buttons and cards.
+- Mobile-first, responsive layout.
+- Custom toggle switch and confirmation modal.
 
 ---
 
 ## 💻 Tech Stack
 
--   **React** (via [Vite](https://vitejs.dev/))
--   **React Router v6** (for client-side routing)
--   **JavaScript (ES6+)**
--   **CSS Modules** (for component-scoped styling)
--   **OpenWeatherMap API** (external source for weather data)
--   **json-server** (mock REST API for clothing item data)
--   **Figma** (for design and UI reference)
+- React (via [Vite](https://vitejs.dev/))
+- React Router v6
+- JavaScript (ES6+)
+- CSS Modules
+- OpenWeatherMap API
+- Express backend (see below)
+- Figma (for design)
 
 ---
 
@@ -70,53 +106,83 @@ Weather data is fetched in real-time when the user visits the app.
 
 ### Data retrieved:
 
--   `temperature.F` – current temperature in Fahrenheit
--   `temperature.C` – current temperature in Celsius (newly implemented)
--   `isDay` – whether it's daytime or nighttime
--   `condition` – the current weather condition (e.g., rain, clear, snow)
-
-This data is used to determine the background image, display weather data, and filter the clothing items shown.
+- `temperature.F` – current temperature in Fahrenheit
+- `temperature.C` – current temperature in Celsius
+- `isDay` – daytime/nighttime status
+- `condition` – current weather condition
 
 ---
 
 ## 👕 Clothing Data
 
-Clothing items are now dynamically fetched from and persisted on a **mock JSON server**.
+Clothing items are fetched from and persisted on the backend.
 
 ### Each item includes:
 
--   `_id`: Unique identifier (managed by json-server).
--   `name`: The garment name (e.g., "T-Shirt", "Jacket").
--   `weather`: The category the item is suited for (`hot`, `warm`, `cold`).
--   `imageUrl`: Image URL for the clothing item (used for display and submission).
-
-Items are dynamically filtered based on the current weather temperature, or all are shown on the profile page.
+- `_id`: Unique identifier
+- `name`: Garment name
+- `weather`: Category (`hot`, `warm`, `cold`)
+- `imageUrl`: Image URL
 
 ---
 
 ## 📱 Responsive Design
 
--   Mobile-first development approach.
--   Fully responsive layout across mobile, tablet, and desktop.
--   CSS Modules used for component-scoped styling.
+- Mobile-first development
+- Fully responsive layout
+- CSS Modules for scoped styling
 
 ---
 
 ## 🔮 Future Sprints (Planned Features)
 
--   ❤️ **Like and unlike clothing cards** (implementing dynamic likes).
--   👤 **Implement user authentication and profiles** (beyond hardcoded data).
--   ☁️ **Connect to a real backend database** (replacing json-server).
--   ✨ **Advanced user personalization and preferences.**
-
-
-
-**Note:** This version is intended for local development with `json-server` and will not work correctly if deployed to platforms like GitHub Pages without a live backend.
+- Advanced user personalization and preferences
+- Additional weather-based recommendations
 
 ---
 
 ## 🛠️ Development Tools
 
--   [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh.
--   [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh.
-```
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc)
+
+---
+
+## 🗄️ Backend
+
+This project requires the WTWR backend to be running.  
+You can find the backend repository here:
+
+[WTWR Backend Repository](https://github.com/jemaxmars/se_project_express)
+
+Follow the instructions in the backend README to set up and run the backend server.
+
+---
+
+## 📦 Project Structure
+
+- `src/components`: All React components
+- `src/utils`: API, auth, constants, weatherApi
+- `src/hooks`: Custom hooks (e.g., useForm)
+- `src/contexts`: React Contexts
+- `public`: index.html and assets
+- `vendor`: normalize.css, fonts.css, fonts
+- `.prettierignore`, `.gitignore`, `vite.config.js`, `.eslintrc.js`, `package.json`, etc.
+
+---
+
+## 📝 License
+
+MIT
+
+---
+
+## 📸 Screenshots & Demo
+
+_Add screenshots, GIFs, or a demo video here (recommended)._
+
+---
+
+## 🌐 Deployment
+
+_Add a link to GitHub Pages or other deployment if available (optional)._

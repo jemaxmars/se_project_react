@@ -10,7 +10,7 @@ export default function AddItemModal({
   const [name, setName] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [weather, setWeather] = useState("");
-  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+  const [isbuttonDisabled, setIsbuttonDisabled] = useState(true);
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -50,9 +50,9 @@ export default function AddItemModal({
 
   useEffect(() => {
     if (name.trim() !== "" && imageUrl.trim() !== "" && weather !== "") {
-      setIsButtonDisabled(false);
+      setIsbuttonDisabled(false);
     } else {
-      setIsButtonDisabled(true);
+      setIsbuttonDisabled(true);
     }
   }, [name, imageUrl, weather]);
 
@@ -63,7 +63,7 @@ export default function AddItemModal({
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSumbit}
-      isButtonDisabled={isButtonDisabled}
+      isbuttonDisabled={isbuttonDisabled}
     >
       <label htmlFor="name" className="form-modal__label">
         Name{" "}
@@ -93,7 +93,7 @@ export default function AddItemModal({
           required
         />
       </label>
-      <fieldset className="form-modal__radio-btns">
+      <fieldset className="form-modal__radio-buttons">
         <legend className="form-modal__legend">Select the weather type:</legend>
         <label
           htmlFor="hot"

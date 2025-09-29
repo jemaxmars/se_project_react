@@ -1,4 +1,3 @@
-
 .confirm-modal {
   position: fixed;
   top: 0;
@@ -6,13 +5,16 @@
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
+  z-index: 1002;
+  display: flex; /* Add this */
+  align-items: center; /* Add this */
+  justify-content: center; /* Add this */
+}
+
+.confirm-modal__button {
   justify-content: center;
   align-items: center;
-  visibility: hidden;
-  opacity: 0;
   transition: visibility 0.3s, opacity 0.3s;
-  z-index: 1000;
 }
 
 .confirm-modal_opened {
@@ -25,8 +27,7 @@
   padding: 60px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-   width: 550px;
-  max-width: 670px;
+  width: 670px;
   box-sizing: border-box;
   position: relative;
 }
@@ -66,7 +67,7 @@
   letter-spacing: 0;
   color: rgba(0, 0, 0, 1);
   max-width: 367px;
-  margin: 0 auto 25px;
+  margin: 0 auto 40px;
   text-align: center;
   white-space: normal;
 }
@@ -86,7 +87,8 @@
   line-height: 24px;
   letter-spacing: 0;
   cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease,
+    border-color 0.2s ease;
   width: 100%;
   box-sizing: border-box;
   text-align: center;

@@ -1,0 +1,112 @@
+.edit-profile-modal__container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+}
+
+.edit-profile-modal__form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 16px;
+  padding: 28px 28px 36px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+  max-width: 496px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.edit-profile-modal__close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.edit-profile-modal__close-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.edit-profile-modal__title {
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  margin: 0;
+}
+
+.edit-profile-modal__label {
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.edit-profile-modal__input {
+  display: block;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 1);
+  width: 440px;
+  height: 29px;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 1);
+  font-size: 16px;
+  line-height: 20px;
+  background: transparent;
+  box-sizing: border-box;
+}
+
+.edit-profile-modal__button {
+  background: rgba(0, 0, 0, 1);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  width: 128px;
+  height: 36px;
+  margin-top: 16px;
+  transition: background 0.2s;
+}
+
+.edit-profile-modal__button:hover:enabled {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.edit-profile-modal__button:disabled {
+  background: rgba(0, 0, 0, 0.3);
+  cursor: not-allowed;
+}
+
+.edit-profile-modal__error {
+  color: rgba(255, 77, 0, 1);
+  font-size: 14px;
+  margin-top: 4px;
+  display: block;
+}
+
+.edit-profile-modal__input_error {
+  border-bottom: 1px solid rgba(255, 77, 0, 1);
+  color: rgba(255, 77, 0, 1);
+}
+
+.edit-profile-modal__label_error {
+  color: rgba(255, 77, 0, 1);
+}

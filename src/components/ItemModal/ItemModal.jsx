@@ -1,14 +1,27 @@
 import "./ItemModal.css";
 import itemModalClose from "../../assets/itemModalClose.svg";
+import { useContext, useState } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function ItemModal({ isOpen, onClose, card, onDeleteItem }) {
+  if (!card) return null; // Prevent rendering if item is undefined
+
+  const currentUser = useContext(CurrentUserContext);
+  const isOwn = card.owner === currentUser?._id;
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const itemDeletebuttonClassName = `modal__delete-button ${
+    isOwn ? "" : "modal__delete-button_hidden"
+  }`;
+
   const handleCloseClick = () => {
     onClose();
   };
 
-  const handleDeleteClick = () => {
+  function handleDeleteClick() {
+    setIsDeleting(true);
     onDeleteItem(card._id);
-  };
+  }
 
   return (
     <div className={`item-modal modal ${isOpen ? "item-modal_opened" : ""}`}>
@@ -33,9 +46,10 @@ function ItemModal({ isOpen, onClose, card, onDeleteItem }) {
           <h2 className="item-modal__caption">{card.name}</h2>
           <p className="item-modal__weather">Weather: {card.weather}</p>
           <button
+            className="modal__delete-button"
             type="button"
-            className="item-modal__delete-button"
             onClick={handleDeleteClick}
+            disabled={isDeleting}
           >
             Delete item
           </button>

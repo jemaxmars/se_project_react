@@ -1,20 +1,56 @@
 import "./ItemCard.css";
+import { useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
+import likedHeart from "../../assets/likedheart.png";
+import unlikedHeart from "../../assets/unlikedheart.png";
 
-function ItemCard({ item, onCardClick }) {
-  const handleCardClick = () => {
-    onCardClick(item);
-  };
+function ItemCard({ item, onCardClick, onCardLike }) {
+  const currentUser = useContext(CurrentUserContext);
+
+  // Defensive checks for user and likes array
+  const userId = currentUser?._id;
+  const likesArray = Array.isArray(item.likes) ? item.likes : [];
+
+  const isAuthorized = !!userId;
+  const isLiked = isAuthorized ? likesArray.includes(userId) : false;
+
+  const itemLikeButtonClassName = `item-card__like-button${
+    isLiked ? " item-card__like-button_liked" : ""
+  }${!isAuthorized ? " item-card__like-button_hidden" : ""}`;
+
+  function handleLike() {
+    if (typeof onCardLike === "function") {
+      onCardLike({ id: item._id, isLiked });
+    }
+  }
+
+  console.log("currentUser:", currentUser, "userId:", userId, "isAuthorized:", isAuthorized);
 
   return (
-    <li className="card">
-      <h2 className="card__name">{item.name}</h2>
+    <div className="item-card">
       <img
-        onClick={handleCardClick}
-        className="card__image"
         src={item.imageUrl}
         alt={item.name}
+        className="item-card__image"
+        onClick={() => onCardClick(item)}
       />
-    </li>
+      <div className="item-card__info">
+        <div className="item-card__info-row">
+          <h3 className="item-card__name">{item.name}</h3>
+          <button
+            className={itemLikeButtonClassName}
+            onClick={handleLike}
+            disabled={!isAuthorized}
+          >
+            <img
+              src={isLiked ? likedHeart : unlikedHeart}
+              alt={isLiked ? "Liked" : "Not liked"}
+              className="item-card__heart"
+            />
+          </button>
+        </div>
+      </div>
+    </div>
   );
 }
 

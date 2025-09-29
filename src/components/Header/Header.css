@@ -28,6 +28,7 @@
   font-size: 20px;
   line-height: 24px;
   letter-spacing: 0%;
+  padding-top: 25px;
 }
 
 .header__desktop-nav {
@@ -37,7 +38,9 @@
   margin-left: auto;
 }
 
-.header__add-clothes-btn {
+.header__add-clothes-button,
+.header__signup-button,
+.header__login-button {
   font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
   font-size: 20px;
@@ -68,7 +71,7 @@
   color: rgba(0, 0, 0, 1);
 }
 
-.header__menu-btn {
+.header__menu-button {
   display: none;
 }
 
@@ -90,7 +93,7 @@
     font-size: 16px;
   }
 
-  .header__menu-btn {
+  .header__menu-button {
     display: block;
     width: 44px;
     height: 44px;
@@ -101,7 +104,7 @@
     border: none;
   }
 
-  .header__menu-btn img {
+  .header__menu-button img {
     width: 28px;
     height: 12px;
     display: block;
@@ -145,7 +148,7 @@
     margin: auto;
   }
 
-  .header__close-btn {
+  .header__close-button {
     background: transparent;
     border: none;
     cursor: pointer;
@@ -154,7 +157,7 @@
     padding: 0;
   }
 
-  .header__close-btn img {
+  .header__close-button img {
     width: 21.21px;
     height: 21.21px;
     display: block;
@@ -178,7 +181,7 @@
     font-weight: 700;
   }
 
-  .header__add-clothes-btn_mobile {
+  .header__add-clothes-button_mobile {
     font-size: 20px;
     font-weight: 700;
     color: rgba(0, 0, 0, 1);
