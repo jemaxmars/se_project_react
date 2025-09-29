@@ -24,7 +24,7 @@ function ItemCard({ item, onCardClick, onCardLike }) {
     }
   }
 
-  console.log("currentUser:", currentUser, "userId:", userId, "isAuthorized:", isAuthorized);
+  "currentUser:", currentUser, "userId:", userId, "isAuthorized:", isAuthorized;
 
   return (
     <div className="item-card">

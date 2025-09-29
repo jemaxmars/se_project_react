@@ -42,7 +42,6 @@ function App() {
   const [clothingItems, setClothingItems] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [activeModal, setActiveModal] = useState(""); // "" | "register" | "login"
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [isWeatherDataLoaded, setIsWeatherDataLoaded] = useState(false);
@@ -157,7 +156,7 @@ function App() {
             cards.map((item) => (item._id === id ? updatedCard : item))
           );
         })
-        .catch((err) => console.log(err));
+        .catch((err) => err);
     } else {
       dislikeItem(id, token)
         .then((updatedCard) => {
@@ -165,7 +164,7 @@ function App() {
             cards.map((item) => (item._id === id ? updatedCard : item))
           );
         })
-        .catch((err) => console.log(err));
+        .catch((err) => err);
     }
   };
 

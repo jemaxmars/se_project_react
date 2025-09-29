@@ -18,16 +18,10 @@ function Sidebar({ onEditProfile, onSignOut }) {
         <span className="sidebar__username">{currentUser?.name}</span>
       </div>
       <div className="sidebar__actions">
-      <button
-          className="sidebar__edit-button"
-          onClick={onEditProfile}
-        >
+        <button className="sidebar__edit-button" onClick={onEditProfile}>
           Change profile data
         </button>
-      <button
-          className="sidebar__signout-button"
-          onClick={onSignOut}
-        >
+        <button className="sidebar__signout-button" onClick={onSignOut}>
           Log out
         </button>
       </div>
