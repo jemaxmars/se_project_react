@@ -75,12 +75,12 @@
   height: 29px;
   font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
-  color: rgba(0, 0, 0, 1); /* input text color */
+  color: rgba(0, 0, 0, 1); 
   font-size: 16px;
   line-height: 20px;
 }
 
-/* Placeholder color (already set, but for completeness) */
+
 .form-modal__input::placeholder {
   color: rgba(0, 0, 0, 0.5);
 }

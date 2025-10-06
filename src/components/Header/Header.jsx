@@ -64,7 +64,7 @@ function Header({
                 <div className="header__user-container">
                   <p className="header__username">{currentUser.name}</p>
                   <img
-                    src={avatar}
+                    src={currentUser.avatar ? currentUser.avatar : avatar}
                     alt="Avatar image"
                     className="header__avatar"
                   />
@@ -101,9 +101,11 @@ function Header({
               </button>
 
               <div className="header__user-container header__user-container_mobile">
-                <p className="header__username">{currentUser ? currentUser.name : ""}</p>
+                <p className="header__username">
+                  {currentUser ? currentUser.name : ""}
+                </p>
                 <img
-                  src={avatar}
+                  src={currentUser.avatar ? currentUser.avatar : avatar}
                   alt="Avatar image"
                   className="header__avatar"
                 />

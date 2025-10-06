@@ -3,10 +3,14 @@ import "./ClothesSection.css";
 import ItemCard from "../ItemCard/ItemCard";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function ClothesSection({ onCardClick, clothingItems, onAddClick }) {
+function ClothesSection({
+  onCardClick,
+  clothingItems,
+  onAddClick,
+  onCardLike,
+}) {
   const currentUser = useContext(CurrentUserContext);
 
-  // Filter items to show only those added by the current user
   const userItems = clothingItems.filter(
     (item) => item.owner === currentUser?._id
   );
@@ -26,7 +30,12 @@ function ClothesSection({ onCardClick, clothingItems, onAddClick }) {
 
       <ul className="clothes__section-items">
         {userItems.map((item) => (
-          <ItemCard key={item._id} item={item} onCardClick={onCardClick} />
+          <ItemCard
+            key={item._id}
+            item={item}
+            onCardClick={onCardClick}
+            onCardLike={onCardLike}
+          />
         ))}
       </ul>
     </div>

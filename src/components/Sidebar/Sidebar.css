@@ -20,8 +20,9 @@
 }
 
 .sidebar__avatar {
-  width: 50px;
-  height: 50px;
+  width: 56px;
+  height: 56px;
+  border: rgba(0, 0, 0, 0.5) solid 1px;
   border-radius: 50%;
   object-fit: cover;
 }
@@ -29,7 +30,7 @@
 .sidebar__username {
   font-size: 20px;
   font-weight: 700;
-  margin: 0;
+  margin: 0 0 10px 0;
   white-space: nowrap;
 }
 
@@ -45,5 +46,5 @@
   border: none;
   cursor: pointer;
   padding: 0;
-  white-space: nowrap; /* Prevent text wrapping */
+  white-space: nowrap; 
 }

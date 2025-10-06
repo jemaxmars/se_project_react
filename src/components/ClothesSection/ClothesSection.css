@@ -11,7 +11,7 @@
   align-items: center;
   width: 100%;
   box-sizing: border-box;
-  /* margin: 0 0 0 66px; */
+  margin: 0 0 0 95px;
 }
 
 .clothes__header-title {
@@ -45,6 +45,6 @@
   gap: 21px;
   list-style-type: none;
   margin: 0;
-  /* margin-left: 56px; */
-  /* max-width: 1363px;  */
+  margin-left: 93px;
+  max-width: 1363px; 
 }

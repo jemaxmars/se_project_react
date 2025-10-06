@@ -9,9 +9,30 @@ function RegisterModal({ onRegister, onClose, onLoginClick }) {
   const [passwordError, setPasswordError] = useState("");
   const [name, setName] = useState("");
   const [nameError, setNameError] = useState("");
+  const [avatar, setAvatar] = useState("");
+  const [avatarError, setAvatarError] = useState("");
 
   function validateEmail(value) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  }
+
+  function validateUrl(value) {
+    try {
+      new URL(value);
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  function handleAvatarChange(e) {
+    const value = e.target.value;
+    setAvatar(value);
+    if (!validateUrl(value)) {
+      setAvatarError("Please enter a valid image URL");
+    } else {
+      setAvatarError("");
+    }
   }
 
   function handleEmailChange(e) {
@@ -59,8 +80,12 @@ function RegisterModal({ onRegister, onClose, onLoginClick }) {
       setNameError("Please enter your name");
       valid = false;
     }
+    if (!validateUrl(avatar)) {
+      setAvatarError("Please enter a valid image URL");
+      valid = false;
+    }
     if (!valid) return;
-    onRegister({ email, password, name });
+    onRegister({ email, password, name, avatar });
   }
 
   return (
@@ -135,6 +160,25 @@ function RegisterModal({ onRegister, onClose, onLoginClick }) {
             <span className="register-modal__error">{passwordError}</span>
           )}
         </label>
+        <label
+          className={`register-modal__label${
+            avatarError ? " register-modal__label_error" : ""
+          }`}
+        >
+          Avatar URL *
+          <input
+            className={`register-modal__input${
+              avatarError ? " register-modal__input_error" : ""
+            }`}
+            type="url"
+            value={avatar}
+            onChange={handleAvatarChange}
+            required
+          />
+          {avatarError && (
+            <span className="register-modal__error">{avatarError}</span>
+          )}
+        </label>
         <div className="register-modal__button-row">
           <button
             type="submit"
@@ -143,9 +187,11 @@ function RegisterModal({ onRegister, onClose, onLoginClick }) {
               !email ||
               !password ||
               !name ||
+              !avatar ||
               !!emailError ||
               !!passwordError ||
-              !!nameError
+              !!nameError ||
+              !!avatarError
             }
           >
             Register

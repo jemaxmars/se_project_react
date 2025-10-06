@@ -9,6 +9,7 @@ function Profile({
   onAddClick,
   setIsEditProfileOpen,
   onSignOut,
+  onCardLike, // <-- receive this!
 }) {
   return (
     <div className="profile profile-page">
@@ -20,12 +21,12 @@ function Profile({
       </section>
       <section className="profileclothes-items">
         <ClothesSection
-          onCardClick={onCardClick}
           clothingItems={clothingItems}
+          onCardClick={onCardClick}
           onAddClick={onAddClick}
+          onCardLike={onCardLike}
         />
       </section>
-      {/* Remove the buttons from here */}
     </div>
   );
 }

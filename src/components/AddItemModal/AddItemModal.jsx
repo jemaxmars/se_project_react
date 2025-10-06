@@ -10,33 +10,22 @@ export default function AddItemModal({
   const [name, setName] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [weather, setWeather] = useState("");
-  const [isbuttonDisabled, setIsbuttonDisabled] = useState(true);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
-  const handleNameChange = (e) => {
-    setName(e.target.value);
-  };
+  const handleNameChange = (e) => setName(e.target.value);
+  const handleImageUrlChange = (e) => setImageUrl(e.target.value);
+  const handleWeatherChange = (e) => setWeather(e.target.value);
 
-  const handleImageUrlChange = (e) => {
-    setImageUrl(e.target.value);
-  };
-
-  const handleWeatherChange = (e) => {
-    setWeather(e.target.value);
-  };
-
-  const handleSumbit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-
     try {
       new URL(imageUrl);
     } catch (error) {
-      console.error("Invalid Image URL:", imageUrl);
       alert(
         "Please enter a valid image URL (e.g., starts with http:// or https://)"
       );
       return;
     }
-
     onAddItemModalSubmit({ name, imageUrl, weather });
   };
 
@@ -50,9 +39,9 @@ export default function AddItemModal({
 
   useEffect(() => {
     if (name.trim() !== "" && imageUrl.trim() !== "" && weather !== "") {
-      setIsbuttonDisabled(false);
+      setIsButtonDisabled(false);
     } else {
-      setIsbuttonDisabled(true);
+      setIsButtonDisabled(true);
     }
   }, [name, imageUrl, weather]);
 
@@ -62,8 +51,8 @@ export default function AddItemModal({
       buttonText="Add garment"
       isOpen={isOpen}
       onClose={onClose}
-      onSubmit={handleSumbit}
-      isbuttonDisabled={isbuttonDisabled}
+      onSubmit={handleSubmit}
+      isButtonDisabled={isButtonDisabled}
     >
       <label htmlFor="name" className="form-modal__label">
         Name{" "}

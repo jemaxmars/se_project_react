@@ -12,8 +12,8 @@ function Sidebar({ onEditProfile, onSignOut }) {
       <div className="sidebar__top">
         <img
           className="sidebar__avatar"
-          src={avatar}
-          alt="Default avatar image"
+          src={currentUser?.avatar ? currentUser.avatar : avatar}
+          alt="User avatar"
         />
         <span className="sidebar__username">{currentUser?.name}</span>
       </div>

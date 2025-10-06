@@ -17,7 +17,7 @@ function LoginModal({ onLogin, onClose, onSignUpClick }) {
       .then((res) => {
         if (res.token) {
           localStorage.setItem("jwt", res.token);
-          onLogin(res); // <-- This updates App.jsx state!
+          onLogin(res); 
           onClose();
         } else {
           setError("Email or password incorrect");

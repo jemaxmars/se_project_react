@@ -7,7 +7,6 @@ import unlikedHeart from "../../assets/unlikedheart.png";
 function ItemCard({ item, onCardClick, onCardLike }) {
   const currentUser = useContext(CurrentUserContext);
 
-  // Defensive checks for user and likes array
   const userId = currentUser?._id;
   const likesArray = Array.isArray(item.likes) ? item.likes : [];
 
@@ -17,14 +16,6 @@ function ItemCard({ item, onCardClick, onCardLike }) {
   const itemLikeButtonClassName = `item-card__like-button${
     isLiked ? " item-card__like-button_liked" : ""
   }${!isAuthorized ? " item-card__like-button_hidden" : ""}`;
-
-  function handleLike() {
-    if (typeof onCardLike === "function") {
-      onCardLike({ id: item._id, isLiked });
-    }
-  }
-
-  "currentUser:", currentUser, "userId:", userId, "isAuthorized:", isAuthorized;
 
   return (
     <div className="item-card">
@@ -38,9 +29,8 @@ function ItemCard({ item, onCardClick, onCardLike }) {
         <div className="item-card__info-row">
           <h3 className="item-card__name">{item.name}</h3>
           <button
-            className={itemLikeButtonClassName}
-            onClick={handleLike}
-            disabled={!isAuthorized}
+            className="item-card__like-button"
+            onClick={() => onCardLike({ id: item._id, isLiked: isLiked })}
           >
             <img
               src={isLiked ? likedHeart : unlikedHeart}

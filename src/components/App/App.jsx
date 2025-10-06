@@ -1,5 +1,5 @@
-import { useEffect, useState, useContext } from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import React, { useEffect, useState, useContext } from "react";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 
 import "./App.css";
 import { coordinates, APIkey } from "../../utils/constants";
@@ -31,6 +31,7 @@ import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 
 function App() {
+  const [activeModal, setActiveModal] = useState(null);
   const [weatherData, setWeatherData] = useState({
     type: "",
     temp: { F: 999, C: 999 },
@@ -53,6 +54,7 @@ function App() {
   const [isConfirmDeleteOpen, setIsConfirmDeleteOpen] = useState(false);
 
   const location = useLocation();
+  const navigate = useNavigate();
   const isProfilePage = location.pathname === "/profile";
 
   const handleToggleSwitchChange = () => {
@@ -84,7 +86,6 @@ function App() {
       });
   };
 
-  // This is for direct delete from preview modal (not confirm modal)
   const handleDeleteItem = (itemId) => {
     const token = localStorage.getItem("jwt");
     deleteItem(itemId, token)
@@ -100,13 +101,11 @@ function App() {
       });
   };
 
-  // This opens the confirm modal and sets the item to delete
   function handleDeleteClick(itemId) {
     setItemToDelete(itemId);
     setIsConfirmDeleteOpen(true);
   }
 
-  // This is called when user confirms delete in the confirm modal
   function handleConfirmDelete() {
     const token = localStorage.getItem("jwt");
     deleteItem(itemToDelete, token)
@@ -114,7 +113,7 @@ function App() {
         setClothingItems((prevItems) =>
           prevItems.filter((item) => item._id !== itemToDelete)
         );
-        setIsPreviewModalOpen(false); // <-- Close the item preview modal
+        setIsPreviewModalOpen(false);
         handleCloseConfirmDelete();
         closeActiveModal();
       })
@@ -136,14 +135,15 @@ function App() {
   };
 
   function handleLogin(loginResponse) {
-    // loginResponse contains { token: ... }
     localStorage.setItem("jwt", loginResponse.token);
+    setToken(loginResponse.token);
+    setIsLoggedIn(true);
     getUserProfile(loginResponse.token)
       .then((userData) => {
-        setCurrentUser(userData); // userData should have .name
+        setCurrentUser(userData);
       })
       .catch((err) => {
-        // handle error if needed
+        console.error("Error fetching user profile after login:", err);
       });
   }
 
@@ -191,6 +191,7 @@ function App() {
     localStorage.removeItem("jwt");
     setIsLoggedIn(false);
     setCurrentUser(null);
+    navigate("/");
   }
 
   useEffect(() => {
@@ -254,7 +255,7 @@ function App() {
                     weatherData={weatherData}
                     handleCardClick={handleCardClick}
                     clothingItems={clothingItems}
-                    onCardLike={handleCardLike} // <-- Make sure this is here
+                    onCardLike={handleCardLike}
                     onSignUpClick={handleSignUpClick}
                   />
                 }
@@ -269,6 +270,7 @@ function App() {
                       onAddClick={handleAddClick}
                       setIsEditProfileOpen={setIsEditProfileOpen}
                       onSignOut={handleSignOut}
+                      onCardLike={handleCardLike}
                     />
                   </ProtectedRoute>
                 }

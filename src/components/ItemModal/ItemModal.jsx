@@ -4,7 +4,7 @@ import { useContext, useState } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function ItemModal({ isOpen, onClose, card, onDeleteItem }) {
-  if (!card) return null; // Prevent rendering if item is undefined
+  if (!card) return null; 
 
   const currentUser = useContext(CurrentUserContext);
   const isOwn = card.owner === currentUser?._id;
