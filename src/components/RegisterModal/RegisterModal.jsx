@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import registerClose from "../../assets/registerloginclose.png";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "./RegisterModal.css";
 
 function RegisterModal({ onRegister, onClose, onLoginClick }) {
@@ -28,8 +28,8 @@ function RegisterModal({ onRegister, onClose, onLoginClick }) {
   function handleAvatarChange(e) {
     const value = e.target.value;
     setAvatar(value);
-    if (!validateUrl(value)) {
-      setAvatarError("Please enter a valid image URL");
+    if (value && !validateUrl(value)) {
+      setAvatarError("(Please enter a valid image URL)");
     } else {
       setAvatarError("");
     }
@@ -38,8 +38,8 @@ function RegisterModal({ onRegister, onClose, onLoginClick }) {
   function handleEmailChange(e) {
     const value = e.target.value;
     setEmail(value);
-    if (!validateEmail(value)) {
-      setEmailError("Please enter a valid email");
+    if (value && !validateEmail(value)) {
+      setEmailError("(Please enter a valid email)");
     } else {
       setEmailError("");
     }
@@ -48,8 +48,8 @@ function RegisterModal({ onRegister, onClose, onLoginClick }) {
   function handlePasswordChange(e) {
     const value = e.target.value;
     setPassword(value);
-    if (value.length < 6) {
-      setPasswordError("Password must be at least 6 characters");
+    if (value && value.length < 6) {
+      setPasswordError("(Password must be at least 6 characters)");
     } else {
       setPasswordError("");
     }
@@ -58,8 +58,8 @@ function RegisterModal({ onRegister, onClose, onLoginClick }) {
   function handleNameChange(e) {
     const value = e.target.value;
     setName(value);
-    if (!value.trim()) {
-      setNameError("Please enter your name");
+    if (value && !value.trim()) {
+      setNameError("(Please enter your name)");
     } else {
       setNameError("");
     }
@@ -68,144 +68,150 @@ function RegisterModal({ onRegister, onClose, onLoginClick }) {
   function handleSubmit(e) {
     e.preventDefault();
     let valid = true;
+
     if (!validateEmail(email)) {
-      setEmailError("Please enter a valid email");
+      setEmailError("(Please enter a valid email)");
       valid = false;
     }
     if (password.length < 6) {
-      setPasswordError("Password must be at least 6 characters");
+      setPasswordError("(Password must be at least 6 characters)");
       valid = false;
     }
     if (!name.trim()) {
-      setNameError("Please enter your name");
+      setNameError("(Please enter your name)");
       valid = false;
     }
     if (!validateUrl(avatar)) {
-      setAvatarError("Please enter a valid image URL");
+      setAvatarError("(Please enter a valid image URL)");
       valid = false;
     }
+
     if (!valid) return;
     onRegister({ email, password, name, avatar });
   }
 
+  const isFormValid =
+    email &&
+    password &&
+    name &&
+    avatar &&
+    !emailError &&
+    !passwordError &&
+    !nameError &&
+    !avatarError;
+
   return (
-    <div className="register-modal__container">
-      <form className="register-modal__form" onSubmit={handleSubmit}>
+    <ModalWithForm
+      title="Sign Up"
+      buttonText="Register"
+      isOpen={true}
+      onClose={onClose}
+      onSubmit={handleSubmit}
+      isButtonDisabled={!isFormValid}
+      additionalButtons={
         <button
           type="button"
-          className="register-modal__close-button"
-          onClick={onClose}
+          className="register-modal__login-button"
+          onClick={onLoginClick}
         >
-          <img
-            src={registerClose}
-            alt="Close"
-            className="register-modal__close-icon"
-          />
+          or Log In
         </button>
-        <h2 className="register-modal__title">Sign Up</h2>
-        <label
-          className={`register-modal__label${
-            nameError ? " register-modal__label_error" : ""
-          }`}
-        >
-          Name *
-          <input
-            className={`register-modal__input${
-              nameError ? " register-modal__input_error" : ""
+      }
+    >
+      <label className="form-modal__label">
+        <div className="form-modal__label-row">
+          <span
+            className={`form-modal__label-text${
+              nameError ? " form-modal__label-text_error" : ""
             }`}
-            type="text"
-            value={name}
-            onChange={handleNameChange}
-            required
-          />
-          {nameError && (
-            <span className="register-modal__error">{nameError}</span>
-          )}
-        </label>
-        <label
-          className={`register-modal__label${
-            emailError ? " register-modal__label_error" : ""
-          }`}
-        >
-          Email *
-          <input
-            className={`register-modal__input${
-              emailError ? " register-modal__input_error" : ""
-            }`}
-            type="email"
-            value={email}
-            onChange={handleEmailChange}
-            required
-          />
-          {emailError && (
-            <span className="register-modal__error">{emailError}</span>
-          )}
-        </label>
-        <label
-          className={`register-modal__label${
-            passwordError ? " register-modal__label_error" : ""
-          }`}
-        >
-          Password *
-          <input
-            className={`register-modal__input${
-              passwordError ? " register-modal__input_error" : ""
-            }`}
-            type="password"
-            value={password}
-            onChange={handlePasswordChange}
-            required
-          />
-          {passwordError && (
-            <span className="register-modal__error">{passwordError}</span>
-          )}
-        </label>
-        <label
-          className={`register-modal__label${
-            avatarError ? " register-modal__label_error" : ""
-          }`}
-        >
-          Avatar URL *
-          <input
-            className={`register-modal__input${
-              avatarError ? " register-modal__input_error" : ""
-            }`}
-            type="url"
-            value={avatar}
-            onChange={handleAvatarChange}
-            required
-          />
-          {avatarError && (
-            <span className="register-modal__error">{avatarError}</span>
-          )}
-        </label>
-        <div className="register-modal__button-row">
-          <button
-            type="submit"
-            className="register-modal__button"
-            disabled={
-              !email ||
-              !password ||
-              !name ||
-              !avatar ||
-              !!emailError ||
-              !!passwordError ||
-              !!nameError ||
-              !!avatarError
-            }
           >
-            Register
-          </button>
-          <button
-            type="button"
-            className="register-modal__login-button"
-            onClick={onLoginClick}
-          >
-            Log In
-          </button>
+            Name *
+          </span>
+          {nameError && <span className="form-modal__error">{nameError}</span>}
         </div>
-      </form>
-    </div>
+        <input
+          className={`form-modal__input${
+            nameError ? " form-modal__input_error" : ""
+          }`}
+          type="text"
+          value={name}
+          onChange={handleNameChange}
+          required
+        />
+      </label>
+
+      <label className="form-modal__label">
+        <div className="form-modal__label-row">
+          <span
+            className={`form-modal__label-text${
+              emailError ? " form-modal__label-text_error" : ""
+            }`}
+          >
+            Email *
+          </span>
+          {emailError && (
+            <span className="form-modal__error">{emailError}</span>
+          )}
+        </div>
+        <input
+          className={`form-modal__input${
+            emailError ? " form-modal__input_error" : ""
+          }`}
+          type="email"
+          value={email}
+          onChange={handleEmailChange}
+          required
+        />
+      </label>
+
+      <label className="form-modal__label">
+        <div className="form-modal__label-row">
+          <span
+            className={`form-modal__label-text${
+              passwordError ? " form-modal__label-text_error" : ""
+            }`}
+          >
+            Password *
+          </span>
+          {passwordError && (
+            <span className="form-modal__error">{passwordError}</span>
+          )}
+        </div>
+        <input
+          className={`form-modal__input${
+            passwordError ? " form-modal__input_error" : ""
+          }`}
+          type="password"
+          value={password}
+          onChange={handlePasswordChange}
+          required
+        />
+      </label>
+
+      <label className="form-modal__label">
+        <div className="form-modal__label-row">
+          <span
+            className={`form-modal__label-text${
+              avatarError ? " form-modal__label-text_error" : ""
+            }`}
+          >
+            Avatar URL *
+          </span>
+          {avatarError && (
+            <span className="form-modal__error">{avatarError}</span>
+          )}
+        </div>
+        <input
+          className={`form-modal__input${
+            avatarError ? " form-modal__input_error" : ""
+          }`}
+          type="url"
+          value={avatar}
+          onChange={handleAvatarChange}
+          required
+        />
+      </label>
+    </ModalWithForm>
   );
 }
 

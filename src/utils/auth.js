@@ -1,11 +1,5 @@
 const baseUrl = "http://localhost:3001";
-
-function checkResponse(res) {
-  if (res.ok) {
-    return res.json();
-  }
-  return Promise.reject(new Error(`Error: ${res.status}`));
-}
+import { checkResponse } from "./api.js";
 
 export function getUserInfo(token) {
   return fetch(`${baseUrl}/users/me`, {

@@ -29,7 +29,7 @@ function ItemCard({ item, onCardClick, onCardLike }) {
         <div className="item-card__info-row">
           <h3 className="item-card__name">{item.name}</h3>
           <button
-            className="item-card__like-button"
+            className={itemLikeButtonClassName}
             onClick={() => onCardLike({ id: item._id, isLiked: isLiked })}
           >
             <img

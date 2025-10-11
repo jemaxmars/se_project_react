@@ -75,11 +75,10 @@
   height: 29px;
   font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
-  color: rgba(0, 0, 0, 1); 
+  color: rgba(0, 0, 0, 1);
   font-size: 16px;
   line-height: 20px;
 }
-
 
 .form-modal__input::placeholder {
   color: rgba(0, 0, 0, 0.5);
@@ -133,6 +132,10 @@
   transition: background-color 0.3s ease;
 }
 
+.form-modal__button:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
 .form-modal__submit:hover {
   background-color: rgba(0, 0, 0, 0.6);
 }
@@ -145,7 +148,7 @@
 .form-modal__button:disabled {
   background-color: rgba(0, 0, 0, 0.3);
   cursor: not-allowed;
-  pointer-events: none; /* Prevents all mouse events */
+  pointer-events: none;
 }
 
 @media screen and (max-width: 480px) {

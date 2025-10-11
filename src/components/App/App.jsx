@@ -128,10 +128,20 @@ function App() {
   }
 
   const handleRegister = (formData) => {
-    registerUser(formData).then((res) => {
-      closeActiveModal();
-      handleLogin({ email: formData.email, password: formData.password });
-    });
+    registerUser(formData)
+      .then((res) => {
+        closeActiveModal();
+        return loginUser({
+          email: formData.email,
+          password: formData.password,
+        });
+      })
+      .then((loginResponse) => {
+        handleLogin(loginResponse);
+      })
+      .catch((err) => {
+        console.error("Registration or login failed:", err);
+      });
   };
 
   function handleLogin(loginResponse) {

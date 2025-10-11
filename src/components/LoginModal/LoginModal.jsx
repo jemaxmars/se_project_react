@@ -1,6 +1,6 @@
 import { useState } from "react";
-import closeIcon from "../../assets/registerloginclose.png";
 import { loginUser } from "../../utils/api";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "./LoginModal.css";
 
 function LoginModal({ onLogin, onClose, onSignUpClick }) {
@@ -17,7 +17,7 @@ function LoginModal({ onLogin, onClose, onSignUpClick }) {
       .then((res) => {
         if (res.token) {
           localStorage.setItem("jwt", res.token);
-          onLogin(res); 
+          onLogin(res);
           onClose();
         } else {
           setError("Email or password incorrect");
@@ -29,63 +29,53 @@ function LoginModal({ onLogin, onClose, onSignUpClick }) {
   }
 
   return (
-    <div className="login-modal__container">
-      <form className="login-modal__form" onSubmit={handleSubmit}>
+    <ModalWithForm
+      title="Log In"
+      buttonText="Log In"
+      isOpen={true}
+      onClose={onClose}
+      onSubmit={handleSubmit}
+      isButtonDisabled={!form.email || !form.password}
+      additionalButtons={
         <button
           type="button"
-          className="login-modal__close-button"
-          onClick={onClose}
+          className="login-modal__signup-button" 
+          onClick={onSignUpClick}
         >
-          <img
-            src={closeIcon}
-            alt="Close"
-            className="login-modal__close-icon"
-          />
+          or Sign Up
         </button>
-        <h2 className="login-modal__title">Log In</h2>
-        <label className="login-modal__label" htmlFor="email">
-          Email *
-        </label>
+      }
+    >
+      <label className="form-modal__label" htmlFor="email">
+        Email *
         <input
-          className="login-modal__input"
+          className="form-modal__input"
           id="email"
           name="email"
           type="email"
           placeholder="Email"
+          value={form.email}
           onChange={handleChange}
           required
         />
-        <label className="login-modal__label" htmlFor="password">
-          Password *
-        </label>
+      </label>
+
+      <label className="form-modal__label" htmlFor="password">
+        Password *
         <input
-          className="login-modal__input"
+          className="form-modal__input"
           id="password"
           name="password"
           type="password"
           placeholder="Password"
+          value={form.password}
           onChange={handleChange}
           required
         />
-        {error && <div className="login-modal__error">{error}</div>}
-        <div className="login-modal__button-row">
-          <button
-            className="login-modal__button"
-            type="submit"
-            disabled={!form.email || !form.password}
-          >
-            Log In
-          </button>
-          <button
-            className="login-modal__signup-button"
-            type="button"
-            onClick={onSignUpClick}
-          >
-            or Sign Up
-          </button>
-        </div>
-      </form>
-    </div>
+      </label>
+
+      {error && <div className="form-modal__error">{error}</div>}
+    </ModalWithForm>
   );
 }
 

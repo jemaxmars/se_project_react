@@ -64,7 +64,11 @@ function Header({
                 <div className="header__user-container">
                   <p className="header__username">{currentUser.name}</p>
                   <img
-                    src={currentUser.avatar ? currentUser.avatar : avatar}
+                    src={
+                      currentUser && currentUser.avatar
+                        ? currentUser.avatar
+                        : avatar
+                    }
                     alt="Avatar image"
                     className="header__avatar"
                   />
@@ -105,7 +109,11 @@ function Header({
                   {currentUser ? currentUser.name : ""}
                 </p>
                 <img
-                  src={currentUser.avatar ? currentUser.avatar : avatar}
+                  src={
+                    currentUser && currentUser.avatar
+                      ? currentUser.avatar
+                      : avatar
+                  }
                   alt="Avatar image"
                   className="header__avatar"
                 />

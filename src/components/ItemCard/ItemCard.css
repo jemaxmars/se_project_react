@@ -54,6 +54,10 @@
   position: static;
 }
 
+.item-card__like-button_hidden {
+  display: none;
+}
+
 .item-card__heart {
   background: transparent;
   border: none;
