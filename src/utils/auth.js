@@ -1,11 +1,9 @@
-const baseUrl =
-  process.env.NODE_ENV === "production"
-    ? "https://api.wtwr.raresupply.com"
-    : "http://localhost:3001";
+import { BASE_URL } from "../utils/constants";
+
 import { checkResponse } from "./api.js";
 
 export function getUserInfo(token) {
-  return fetch(`${baseUrl}/users/me`, {
+  return fetch(`${BASE_URL}/users/me`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -15,7 +13,7 @@ export function getUserInfo(token) {
 }
 
 export function signup({ name, avatar, email, password }) {
-  return fetch(`${baseUrl}/signup`, {
+  return fetch(`${BASE_URL}/signup`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ name, avatar, email, password }),
@@ -23,7 +21,7 @@ export function signup({ name, avatar, email, password }) {
 }
 
 export function signin({ email, password }) {
-  return fetch(`${baseUrl}/signin`, {
+  return fetch(`${BASE_URL}/signin`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password }),

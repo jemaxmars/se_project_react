@@ -1,0 +1,28 @@
+/* Add to src/components/AddItemModal/AddItemModal.css */
+
+.AddItemModal .form-modal__label {
+  display: block !important;
+  flex-direction: unset !important;
+}
+
+.form-modal__label {
+  display: block !important;
+  flex-direction: unset !important;
+}
+
+.form-modal__label_type_radio {
+  display: flex !important;
+  align-items: center !important;
+  flex-direction: row !important;
+  justify-content: flex-start !important;
+}
+
+.form-modal__radio-input {
+  order: 0 !important;
+  margin-right: 8px;
+}
+
+.AddItemModal label.form-modal__label:not(.form-modal__label_type_radio) {
+  display: block !important;
+  flex-direction: unset !important;
+}

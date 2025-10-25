@@ -1,7 +1,4 @@
-const baseUrl =
-  process.env.NODE_ENV === "production"
-    ? "https://api.wtwr.raresupply.com"
-    : "http://localhost:3001";
+import { BASE_URL } from "../utils/constants";
 
 function checkResponse(res) {
   if (res.ok) {
@@ -11,11 +8,11 @@ function checkResponse(res) {
 }
 
 function getItems() {
-  return fetch(`${baseUrl}/items`).then(checkResponse);
+  return fetch(`${BASE_URL}/items`).then(checkResponse);
 }
 
 function addItem(data, token) {
-  return fetch(`${baseUrl}/items`, {
+  return fetch(`${BASE_URL}/items`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -26,7 +23,7 @@ function addItem(data, token) {
 }
 
 function deleteItem(id, token) {
-  return fetch(`${baseUrl}/items/${id}`, {
+  return fetch(`${BASE_URL}/items/${id}`, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -35,7 +32,7 @@ function deleteItem(id, token) {
 }
 
 function likeItem(id, token) {
-  return fetch(`${baseUrl}/items/${id}/likes`, {
+  return fetch(`${BASE_URL}/items/${id}/likes`, {
     method: "PUT",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -44,7 +41,7 @@ function likeItem(id, token) {
 }
 
 function dislikeItem(id, token) {
-  return fetch(`${baseUrl}/items/${id}/likes`, {
+  return fetch(`${BASE_URL}/items/${id}/likes`, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -55,7 +52,7 @@ function dislikeItem(id, token) {
 export { checkResponse, getItems, addItem, deleteItem, likeItem, dislikeItem };
 
 export function registerUser(data) {
-  return fetch(`${baseUrl}/signup`, {
+  return fetch(`${BASE_URL}/signup`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
@@ -63,7 +60,7 @@ export function registerUser(data) {
 }
 
 export function loginUser(data) {
-  return fetch(`${baseUrl}/signin`, {
+  return fetch(`${BASE_URL}/signin`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
@@ -71,7 +68,7 @@ export function loginUser(data) {
 }
 
 export function updateProfile({ name, avatar }, token) {
-  return fetch(`${baseUrl}/users/me`, {
+  return fetch(`${BASE_URL}/users/me`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -82,7 +79,7 @@ export function updateProfile({ name, avatar }, token) {
 }
 
 export function getUserProfile(token) {
-  return fetch(`${baseUrl}/users/me`, {
+  return fetch(`${BASE_URL}/users/me`, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${token}`,

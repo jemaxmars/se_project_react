@@ -11,9 +11,15 @@
   font-family: "Cabinet Grotesk";
   font-weight: 700;
   src: url("./vendor/fonts/CabinetGrotesk-Bold.woff") format("woff");
-  font-display: swap; 
+  font-display: swap;
 }
 
 body {
   font-family: "Cabinet Grotesk", sans-serif;
+}
+
+/* Force override for Add Clothes modal only */
+label.form-modal__label:not(.form-modal__label_type_radio) {
+  display: block !important;
+  flex-direction: unset !important;
 }

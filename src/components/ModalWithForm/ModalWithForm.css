@@ -106,6 +106,8 @@
 
 .form-modal__label_type_radio {
   margin-bottom: 18px;
+  display: flex;
+  align-items: center;
 }
 
 .form-modal__legend {
