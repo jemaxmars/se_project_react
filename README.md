@@ -20,7 +20,7 @@ WTWR (What To Wear) is a React-based frontend application that recommends weathe
   - `/profile` route is protected and only accessible to authenticated users.
   - Only the current user's clothing cards are shown on the profile page.
 
-- **User Info Display:**
+  - **User Info Display:**
 
   - When logged in, user information is displayed in the header and sidebar.
   - Sidebar includes buttons for logging out and opening the “change profile” modal.
@@ -171,18 +171,52 @@ Follow the instructions in the backend README to set up and run the backend serv
 
 ---
 
+## Access Information
+
+- **Frontend deployed:** https://wtwr.raresupply.com
+- **Backend domain:** https://api.wtwr.raresupply.com
+- **Project pitch video:** [(https://www.youtube.com/watch?v=Y1ElcO0zIQ4)]
+
+## Screenshots / Demo
+
+### Main Page
+
+![Main Page](https://ik.imagekit.io/zdkvsvatx/wtwr_mainpage_screenshot.png?updatedAt=1761484035253)
+
+### Profile Page
+
+![Profile Page](https://ik.imagekit.io/zdkvsvatx/wtwr_profile_screenshot.png?updatedAt=1761484035131)
+
+### Change Profile Data Modal
+
+![Change Profile Data Modal](https://ik.imagekit.io/zdkvsvatx/wtwr_change_profile_data_screenshot.png?updatedAt=1761484034829)
+
+### Like/Unlike Clothing Item Functionality
+
+![Like/Unlike Clothing Item Functionality](https://ik.imagekit.io/zdkvsvatx/wtwr_like_unlike_items_screenshot.png?updatedAt=1761483920833)
+
+### Add New Clothing Item
+
+![Add New Clothing Item](https://ik.imagekit.io/zdkvsvatx/wtwr_add_clothes_screenshot.png?updatedAt=1761484034527)
+
+### Clothing Item Preview Modal
+
+![Clothing Item Preview Modal](https://ik.imagekit.io/zdkvsvatx/wtwr_preview_modal_screenshot.png?updatedAt=1761484035086)
+
+### Confirm Delete Modal
+
+![Confirm Delete Modal](https://ik.imagekit.io/zdkvsvatx/wtwr_delete_modal_screenshot.png?updatedAt=1761484034686)
+
+### Sign Up Modal
+
+![Sign Up Modal](https://ik.imagekit.io/zdkvsvatx/wtwr_signup_modal.png?updatedAt=1761484959749)
+
+### Log In Modal
+
+![Log In Modal](https://ik.imagekit.io/zdkvsvatx/wtwr_login_modal.png?updatedAt=1761484959724)
+
+---
+
 ## 📝 License
 
 MIT
-
----
-
-## 📸 Screenshots & Demo
-
-_Add screenshots, GIFs, or a demo video here (recommended)._
-
----
-
-## 🌐 Deployment
-
-_Add a link to GitHub Pages or other deployment if available (optional)._
