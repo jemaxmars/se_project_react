@@ -18,7 +18,7 @@ body {
   font-family: "Cabinet Grotesk", sans-serif;
 }
 
-/* Force override for Add Clothes modal only */
+
 label.form-modal__label:not(.form-modal__label_type_radio) {
   display: block !important;
   flex-direction: unset !important;

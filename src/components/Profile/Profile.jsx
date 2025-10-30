@@ -22,9 +22,6 @@ function Profile({
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Debug: log currentUser
-  console.log("currentUser:", currentUser);
-
   return (
     <div className="profile profile-page">
       <section className="profilesidebar">
