@@ -10,3 +10,140 @@
 .profile-page .header__date-and-location {
   margin-left: 40px;
 }
+
+@media screen and (max-width: 480px) {
+  .profile {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  /* --- Header Section --- */
+  .profile-page .header {
+    position: relative;
+    padding-top: 18px;
+    padding-left: 0;
+    padding-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .profile-page .header__logo {
+    position: absolute;
+    top: 18px;
+    left: 16px;
+    margin: 0;
+    z-index: 2;
+  }
+
+  .profile-page .header__logo img {
+    width: 89px;
+    height: 40px;
+  }
+
+  .profile-page .header__menu-button {
+    position: absolute;
+    top: 18px;
+    right: 16px;
+    margin: 0;
+    z-index: 2;
+  }
+
+  .profile-page .header__date-and-location {
+    position: relative;
+    display: block;
+    margin-top: 64px;
+    margin-left: 0;
+    font-size: 16px;
+    text-align: left;
+    padding-left: 16px;
+  }
+
+  /* --- Sidebar Section --- */
+  .profile__sidebar-mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+  .profile__sidebar-mobile-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    border-top: 1px solid rgba(0, 0, 0, 0.3);
+    padding-top: 20px;
+  }
+  .sidebar__avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    margin-bottom: 0;
+  }
+  .profile__sidebar-mobile-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  .sidebar__username {
+    font-size: 24px;
+    font-weight: 600;
+    border: none;
+    background: none;
+    color: inherit;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    text-align: left;
+  }
+  .profile__sidebar-mobile-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 0;
+    gap: 8px;
+    padding-left: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    padding-bottom: 20px;
+  }
+  .sidebar__edit-button,
+  .sidebar__signout-button {
+    padding: 10px 0;
+    font-size: 20px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.6);
+    border: none;
+    margin-bottom: 0;
+    cursor: pointer;
+    width: 90%;
+    max-width: 280px;
+    background: none;
+  }
+
+  /* --- Clothes Section --- */
+  .clothes__section-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 0;
+    margin: 0 auto;
+    justify-content: center;
+    max-width: 100%;
+  }
+
+  .item-card {
+    width: 164px;
+    height: 164px;
+    flex: 0 0 calc(50% - 8px);
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  /* --- Mobile Menu Modal --- */
+  .profile-page .header__mobile-menu-content {
+    margin: 0;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}

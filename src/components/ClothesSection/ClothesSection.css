@@ -11,7 +11,7 @@
   align-items: center;
   width: 100%;
   box-sizing: border-box;
-  margin: 0 0 0 95px;
+  margin: 0;
 }
 
 .clothes__header-title {
@@ -45,7 +45,25 @@
   gap: 21px;
   list-style-type: none;
   margin: 0;
-  max-width: 1363px; 
+  max-width: 1363px;
 }
 
+@media (max-width: 480px) {
+  .clothes__header {
+    margin-left: 68px;
+    gap: 125px;
+  }
 
+  .clothes__header-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-left: -63px;
+  }
+
+  .clothes__section-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+  }
+}

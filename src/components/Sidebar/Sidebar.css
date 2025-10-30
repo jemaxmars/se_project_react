@@ -32,6 +32,14 @@
   font-weight: 700;
   margin: 0 0 10px 0;
   white-space: nowrap;
+  border: none;
+  background: none;
+  color: inherit;
+  font-family: inherit;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: none;
+  display: inline-block;
 }
 
 .sidebar__edit-button,
@@ -46,5 +54,47 @@
   border: none;
   cursor: pointer;
   padding: 0;
-  white-space: nowrap; 
+  white-space: nowrap;
+}
+
+@media screen and (max-width: 480px) {
+  .sidebar {
+    flex-direction: column; 
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 6px 12px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    width: 100%;
+  }
+  .sidebar__top {
+    gap: 12px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+  .sidebar__avatar {
+    margin-left: 0;
+  }
+  .sidebar__username {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+  }
+  .sidebar__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 8px;
+    margin-top: 0;
+  }
+  .sidebar__edit-button,
+  .sidebar__signout-button {
+    font-size: 20px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.6);
+    text-decoration: none;
+    width: 90%;
+    max-width: 280px;
+  }
 }

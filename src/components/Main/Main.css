@@ -30,12 +30,26 @@
     font-size: 16px;
   }
 
+  .main-page-container {
+    min-width: 0;
+    width: 100%;
+  }
+
   .cards__list {
+    display: flex;
+    flex-wrap: wrap;
     gap: 16px;
+    padding: 0;
+    margin: 0 auto;
+    justify-content: center;
+    max-width: 100%;
   }
 
   .cards__list li {
     width: 164px;
     height: 164px;
+    flex: 0 0 calc(50% - 8px);
+    margin: 0;
+    box-sizing: border-box;
   }
 }

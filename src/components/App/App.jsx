@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 
 import "./App.css";
@@ -275,10 +275,11 @@ function App() {
                 element={
                   <ProtectedRoute token={token}>
                     <Profile
+                      currentUser={currentUser}
                       onCardClick={handleCardClick}
                       clothingItems={clothingItems}
                       onAddClick={handleAddClick}
-                      setIsEditProfileOpen={setIsEditProfileOpen}
+                      setIsEditProfileOpen={() => setIsEditProfileOpen(true)}
                       onSignOut={handleSignOut}
                       onCardLike={handleCardLike}
                     />

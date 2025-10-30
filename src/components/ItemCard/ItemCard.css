@@ -81,12 +81,21 @@
 }
 
 @media screen and (max-width: 480px) {
-  .card__image {
-    height: 164px;
-    width: 164px;
+  .item-card {
+    flex: 0 0 calc(50% - 15px);
+    max-width: 164px;
+    max-height: 164px;
+    margin: 0;
   }
+
   .item-card__image {
     height: 164px;
     width: 164px;
+  }
+
+  .item-card__name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }

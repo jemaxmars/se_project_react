@@ -60,20 +60,20 @@ function Header({
               >
                 + Add clothes
               </button>
-              <Link to="/profile" className="header__link">
-                <div className="header__user-container">
-                  <p className="header__username">{currentUser.name}</p>
-                  <img
-                    src={
-                      currentUser && currentUser.avatar
-                        ? currentUser.avatar
-                        : avatar
-                    }
-                    alt="Avatar image"
-                    className="header__avatar"
-                  />
-                </div>
-              </Link>
+              <div className="header__user-container">
+                <Link to="/profile" className="header__username">
+                  {currentUser ? currentUser.name : ""}
+                </Link>
+                <img
+                  src={
+                    currentUser && currentUser.avatar
+                      ? currentUser.avatar
+                      : avatar
+                  }
+                  alt="Avatar image"
+                  className="header__avatar"
+                />
+              </div>
             </>
           ) : (
             <>
@@ -105,9 +105,13 @@ function Header({
               </button>
 
               <div className="header__user-container header__user-container_mobile">
-                <p className="header__username">
+                <Link
+                  to="/profile"
+                  className="header__username"
+                  onClick={toggleMobileMenu}
+                >
                   {currentUser ? currentUser.name : ""}
-                </p>
+                </Link>
                 <img
                   src={
                     currentUser && currentUser.avatar
@@ -128,6 +132,7 @@ function Header({
               >
                 + Add clothes
               </button>
+              <ToggleSwitch />
             </div>
           </div>
         </>
